@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from "react";
-import {  useLocation, useNavigate } from "react-router";
+import React, { useState, useEffect, use } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthProvider";
 
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const { user, logOut } = use(AuthContext);
+
+  const handleLogOut = () => {
+
+    logOut()
+      .then(() => {
+        console.log('logOut successful')
+      })
+      .catch()
+  }
 
 
   useEffect(() => {
@@ -33,21 +44,21 @@ const Navbar = () => {
 
       <li
         onClick={() => handleNavigation("/allMovies")}
-        className={`m-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/Apps"
-          ? "text-white bg-[#00A8E7]"
-          : "text-gray-700 hover:text-[#00A8E7]"
+        className={`m-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/allMovies"
+          ? "text-white bg-[#00A8E795]"
+          : "text-gray-700 "
           }`}
       >
         All Movies
       </li>
       <li
         onClick={() => handleNavigation("/myCollection")}
-        className={`m-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/Apps"
+        className={`m-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/myCollection"
           ? "text-white bg-[#00A8E7]"
           : "text-gray-700 hover:text-[#00A8E7]"
           }`}
       >
-       My Collection
+        My Collection
       </li>
     </>
   );
@@ -80,13 +91,54 @@ const Navbar = () => {
             </span>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+
+        <div className="navbar-center">
+          <ul className="menu menu-horizontal px-1 gap-5  text-[#0B3954] text-2xl  hidden lg:flex">
+            {
+              links
+            }
+          </ul>
         </div>
-        <div className="navbar-end hidden md:flex">
+
+        <div className="navbar-end">
+          <div className='login-btn flex  text-[#0B3954] text-2xl font-semibold items-center px-4'>
+            {
+              user ? (
+                <button onClick={handleLogOut} className='mr-4 cursor-pointer'>Logout</button>
+              ) : (
+                <div className="dropdown">
+                  <div tabIndex={0} role="button" className="cursor-pointer">
+                    <img src="https://i.ibb.co.com/hR0p6qhz/user.png" alt="" />  
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-35 p-2  shadow">
+                      <ul class="dropdown-menu sub-menu">
+                    <li><Link to='/login' className="text-2xl">Login</Link></li>
+                    <li><Link to='register' className="text-2xl">Register</Link></li>
+                  </ul>
+                  </ul>
+                </div>
+
+              )
+            }
+            <Link to="/profile">
+              {user && (
+                <img
+                  className="w-20 h-10 md:h-11 xl:h-14 2xl:h-16  rounded-full object-cover border-2 border-white sm:mr-0 mr-8"
+                  src={
+                    user?.photoURL ? user.photoURL : "https://i.ibb.co.com/hR0p6qhz/user.png"
+                  }
+                  alt="User"
+                />
+              )}
+            </Link>
+
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 

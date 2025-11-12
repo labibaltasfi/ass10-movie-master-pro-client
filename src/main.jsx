@@ -6,6 +6,10 @@ import './index.css'
 import App from './App.jsx'
 import RootLayout from './Routes/RootLayout';
 import Home from './Pages/Home';
+import AllMoviesPage from './Pages/AllMoviesPage.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
+
+
 
 
 
@@ -20,15 +24,19 @@ const router = createBrowserRouter([
         Component: Home ,
         loader: () => fetch("../../public/movies.json"),
       },
-      // {
-      //   path:
-      // }
+      {
+        path: "allMovies",
+        Component: AllMoviesPage
+      },
+     
     ]
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+      <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )

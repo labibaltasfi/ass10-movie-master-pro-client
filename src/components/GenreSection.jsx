@@ -39,6 +39,9 @@ const GenreSection = () => {
     : movies;
 
   return (
+    <div className="bg-[#EDEDF5]">
+
+   
     <div className="p-5 w-11/12 mx-auto">
         <h2 className="text-4xl text-center py-10 font-semibold mb-3">Choose Your Category</h2>
       <div className="flex flex-wrap justify-center gap-3 mb-8">
@@ -84,6 +87,7 @@ const GenreSection = () => {
         <p className="text-center text-gray-500 mt-6">No movies found.</p>
       )}
     </div>
+     </div>
   );
 };
 
