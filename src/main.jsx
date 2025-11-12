@@ -8,6 +8,7 @@ import RootLayout from './Routes/RootLayout';
 import Home from './Pages/Home';
 import AllMoviesPage from './Pages/AllMoviesPage.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
+import Login from './Pages/Login.jsx';
 
 
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "allMovies",
         Component: AllMoviesPage
+      },
+      {
+        path: "login",
+        Component: Login
       },
      
     ]
