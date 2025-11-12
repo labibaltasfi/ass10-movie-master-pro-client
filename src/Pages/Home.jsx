@@ -3,6 +3,8 @@ import HeroSection from '../components/HeroSection';
 import TopRatedMovies from '../components/TopRatedMovies';
 import RecentlyAdded from '../components/RecentlyAdded';
 import GenreSection from '../components/GenreSection';
+import Footer from '../components/footer';
+
 
 const Home = () => {
     return (
@@ -11,6 +13,7 @@ const Home = () => {
             <TopRatedMovies></TopRatedMovies>
             <RecentlyAdded></RecentlyAdded>
             <GenreSection></GenreSection>
+            <Footer></Footer>
         </div>
     );
 };
