@@ -6,12 +6,12 @@ const Footer = () => {
     return (
         <footer className="bg-gray-900 text-gray-300 py-6 pt-12">
             <div className="p-5 w-11/12 mx-auto">
-                <div className="grid grid-cols-3 mb-20 gap-20">
-                    <div>
+                <div className="grid lg:grid-cols-3 grid-cols-2  mb-20 gap-20">
+                    <div className="lg:col-span-1 col-span-2">
                         <h2 className="font-extrabold text-4xl text-[#00A8E7] pb-5">
                             MovieMaster Pro
                         </h2>
-                        <p className="pr-30">MovieMaster Pro is a user-friendly platform to discover, browse, and track movies across all genres. Find movie details, explore genres, and stay updated with your favorite films in one place.</p>
+                        <p className="2xl:pr-30">MovieMaster Pro is a user-friendly platform to discover, browse, and track movies across all genres. Find movie details, explore genres, and stay updated with your favorite films in one place.</p>
                     </div>
                     <div>
                         <div>

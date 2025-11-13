@@ -6,7 +6,7 @@ import { auth } from '../firebase/firebase.init';
 
 
 
-const googleProvider = new GoogleAuthProvider
+const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const forgerPassword = (auth, email) =>{
+    const forgerPassword = ( email) =>{
         return sendPasswordResetEmail(auth, email)
     }
 

@@ -4,7 +4,7 @@ import "swiper/css";
 import 'swiper/swiper-bundle.css'
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 
-const HeroSection = () => {
+const Banner = () => {
     return (
           <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -84,4 +84,4 @@ const HeroSection = () => {
     );
 };
 
-export default HeroSection;
+export default Banner;

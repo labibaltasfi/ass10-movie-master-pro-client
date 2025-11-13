@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import useAxios from '../hooks/useAxios';
 
 
-// const TopRatedMoviesPromise = fetch('../../public/movies.json').then(res => res.json())
+
 const TopRatedMovies = () => {
     const [movies, setMovies] = useState([]);
     const axiosInstance = useAxios()
@@ -23,7 +23,7 @@ const TopRatedMovies = () => {
                 <h2 className="text-4xl text-center py-10 font-semibold mb-3"> Top Rated Movies</h2>
                 <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 ">
                     {movies.map(movie => (
-                        <Link key={movie._id} className="card bg-base-100 shadow-sm mx-2.5 w-80 mb-10">
+                        <Link key={movie._id}  to={`/allMovies/${movie._id}`} className="card bg-base-100 shadow-sm mx-2.5 w-80 mb-10">
                             <figure>
                                 <img className='h-[500px]'
                                     src={movie.posterUrl}

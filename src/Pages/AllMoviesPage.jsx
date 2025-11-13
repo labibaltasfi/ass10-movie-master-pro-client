@@ -20,7 +20,7 @@ const AllMoviesPage = () => {
                 <h2 className="text-4xl text-center py-10 font-semibold mb-3">All Movies</h2>
                 <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4 ">
                     {movies.map(movie => (
-                        <Link key={movie._id} className="card bg-base-100 shadow-sm mx-2.5 my-5 w-80">
+                        <Link key={movie._id} to={`/allMovies/${movie._id}`} className="card bg-base-100 shadow-sm mx-2.5 my-5 w-80">
                             <figure>
                                 <img className='h-[400px] pt-3'
                                     src={movie.posterUrl}
