@@ -12,6 +12,7 @@ import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MovieDetails from './Pages/MovieDetails.jsx';
+import AddMovie from './Pages/AddMoviePage.jsx';
 
 
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         path: "/allMovies/:id",
         loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
         Component: MovieDetails,
+      },
+      {
+        path: "/addMovies",
+        Component: AddMovie,
       },
       {
         path: "/*",

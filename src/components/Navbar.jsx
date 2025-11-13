@@ -60,6 +60,15 @@ const Navbar = () => {
       >
         My Collection
       </li>
+      <li
+        onClick={() => handleNavigation("/addMovies")}
+        className={`m-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/addMovies"
+          ? "text-white bg-[#00A8E7]"
+          : "text-gray-700 hover:text-[#00A8E7]"
+          }`}
+      >
+        Add Movie
+      </li>
     </>
   );
 
