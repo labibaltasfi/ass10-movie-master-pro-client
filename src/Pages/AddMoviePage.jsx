@@ -11,27 +11,37 @@ const AddMoviePage = () => {
      const handleAddMovie = (e) => {
         e.preventDefault();
          const form = e.target;
-        const name = e.target.name.value;
-        const email = e.target.email.value;
+        const title = e.target.name.value;
         const genre = e.target.genre.value;
         const releaseYear = e.target.releaseYear.value;
-        const language = e.target.language.value;
-        const posterUrl = e.target.posterUrl.value;
+        const director = e.target.director.value;
+        const cast = e.target.cast.value;
+        const rating = e.target.rating.value;
         const duration = e.target.duration.value;
+        const plotSummary = e.target.plotSummary.value;
+        const posterUrl = e.target.posterUrl.value;
+        const language = e.target.language.value;
+        const country = e.target.country.value;
+        const email = e.target.email.value;
 
-        // console.log(productId, name, email, bid)
+     
 
         const newBid = {
-            title: name,
+            title: title,
             genre:genre,
             releaseYear: releaseYear,
+            director: director,
+            cast: cast,
+            rating: rating,
+            duration: duration,
+            plotSummary: plotSummary,
             posterUrl: posterUrl,
             language:language,
-            duration: duration,
+            country: country,
             addedBy: email,
         }
 
-        fetch('http://localhost:3000/add-movies', {
+        fetch('http://localhost:3000/allMovies', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -58,7 +68,7 @@ const AddMoviePage = () => {
                 <form onSubmit={handleAddMovie} className="space-y-4 sm:space-y-6">
                     {/* Name */}
                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Movie Name</label>
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Movie Name</label> */}
                         <input
                             type="text"
                             name='name'
@@ -67,19 +77,10 @@ const AddMoviePage = () => {
                             className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
                         />
                     </div>
-                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Poster URL</label>
-                        <input
-                            type="text"
-                            name='posterUrl'
-                            placeholder="Poster URL"
-                            required
-                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
-                        />
-                    </div>
+                    
 
                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Genre</label>
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Genre</label> */}
                         <input
                             type="text"
                             name='genre'
@@ -89,7 +90,7 @@ const AddMoviePage = () => {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Release Year</label>
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Release Year</label> */}
                         <input
                             type="text"
                             name='releaseYear'
@@ -99,7 +100,37 @@ const AddMoviePage = () => {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Duration</label>
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Director</label> */}
+                        <input
+                            type="text"
+                            name='director'
+                            placeholder="Director"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Cast</label> */}
+                        <input
+                            type="text"
+                            name='cast'
+                            placeholder="Cast"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Rating</label> */}
+                        <input
+                            type="text"
+                            name='rating'
+                            placeholder="Rating"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Duration</label> */}
                         <input
                             type="text"
                             name='duration'
@@ -109,7 +140,27 @@ const AddMoviePage = () => {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Language</label>
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">PlotSummary</label> */}
+                        <input
+                            type="text"
+                            name='plotSummary'
+                            placeholder="PlotSummary"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                     <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Poster URL</label> */}
+                        <input
+                            type="text"
+                            name='posterUrl'
+                            placeholder="Poster URL"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Language</label> */}
                         <input
                             type="text"
                             name='language'
@@ -118,6 +169,17 @@ const AddMoviePage = () => {
                             className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
                         />
                     </div>
+                    <div className="flex flex-col">
+                        {/* <label className="mb-1 font-medium text-sm sm:text-base lg:text-lg">Country</label> */}
+                        <input
+                            type="text"
+                            name='country'
+                            placeholder="Country"
+                            required
+                            className="p-2 sm:p-2 rounded-xl border border-[#00BFA6] bg-white text-gray-800 text-sm sm:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                        />
+                    </div>
+                    
 
                     {/* Email */}
                     <div className="flex flex-col">

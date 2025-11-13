@@ -10,7 +10,7 @@ const AllMoviesPage = () => {
         axiosInstance.get("/allMovies")
             .then(res => setMovies(res.data))
             .catch(err => console.error(err));
-    }, []);
+    }, [axiosInstance]);
 
 
 

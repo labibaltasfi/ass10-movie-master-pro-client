@@ -13,6 +13,7 @@ import Register from './Pages/Register.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MovieDetails from './Pages/MovieDetails.jsx';
 import AddMovie from './Pages/AddMoviePage.jsx';
+import MyCollection from './Pages/MyCollection.jsx';
 
 
 
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
         path: "/addMovies",
         Component: AddMovie,
       },
+      {
+        path: "/myCollection",
+        Component: MyCollection,
+      },
+     
       {
         path: "/*",
         element: <ErrorPage></ErrorPage>,
