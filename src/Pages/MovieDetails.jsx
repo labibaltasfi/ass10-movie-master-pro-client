@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, } from 'react-router';
+import React, { use, useEffect, useState } from 'react';
+import { Link, useLoaderData, useNavigate, } from 'react-router';
 import useAxios from '../hooks/useAxios';
+import { AuthContext } from '../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const MovieDetails = () => {
     const { _id: id } = useLoaderData();
+    const navigate = useNavigate();
     const axiosInstance = useAxios();
     const [movie, setMovie] = useState(null);
+    const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { user } = use(AuthContext);
 
     useEffect(() => {
         axiosInstance.get(`/allMovies/${id}`)
@@ -21,8 +26,44 @@ const MovieDetails = () => {
             });
     }, [id, axiosInstance]);
 
+
+    const handleDelete = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:3000/allMovies/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your bid has been deleted.",
+                                icon: "success"
+                            });
+
+                            // 
+                            const remainingBids = movies.filter(bid => bid._id !== _id);
+                            setMovies(remainingBids)
+                        }
+                    })
+
+
+            }
+        });
+    }
+
     if (loading) return <p className="text-center mt-10">Loading...</p>;
-    if (!movie) return <p className="text-center mt-10">Movie not found.</p>;
+    if (!movie) return <p className="text-center mt-10 text-4xl font-black h-screen flex justify-center items-center">Movie not found.</p>;
 
     return (
         <div className='bg-[#EDEDF5]'>
@@ -43,6 +84,24 @@ const MovieDetails = () => {
                         <h3 className='font-bold lg:text-3xl text-2xl text-[#34CD9F] pt-5 pb-2'>Storyline: </h3>
                         <p className='lg:text-2xl text-xs '>{movie.plotSummary}</p>
                     </div>
+                </div>
+                <div className='flex justify-center my-20'>
+                    {movie.addedBy === user?.email && (
+                        <div>
+                            <button
+                                className="btn btn-red"
+                                onClick={() => handleDelete(movie._id)}
+                            >
+                                Delete
+                            </button>
+                            <button
+                                className="btn btn-primary ml-3"
+                                onClick={() => navigate(`/updateMovies/${movie._id}`)}
+                            >
+                                Update
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

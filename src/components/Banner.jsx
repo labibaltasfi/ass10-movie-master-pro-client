@@ -32,7 +32,6 @@ const Banner = () => {
                            The story of J. Robert Oppenheimer and the creation of the atomic bomb.
                         </p>
                         </div>
-                        <button className="btn-primary mb-5">See more</button>
                     </div>
                 </div>
             </div>
@@ -53,7 +52,6 @@ const Banner = () => {
                            The Avengers assemble once more to reverse Thanos's snap.
                         </p>
                         </div>
-                        <button className="btn-primary mb-5">See more</button>
                     </div>
                 </div>
             </div>
@@ -74,7 +72,6 @@ const Banner = () => {
                            A lion cub must embrace his role as king after his father’s death.
                         </p>
                         </div>
-                        <button className="btn-primary mb-5">See more</button>
                     </div>
                 </div>
             </div>
