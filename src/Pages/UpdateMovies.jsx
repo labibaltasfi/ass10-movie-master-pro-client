@@ -2,11 +2,12 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import useAxios from '../hooks/useAxios';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 
 const UpdateMovies = () => {
     const [movie, setMovie] = useState(null);
     const [movies, setMovies] = useState([]);
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const { user } = use(AuthContext);
     const { _id: id } = useLoaderData();
@@ -81,10 +82,13 @@ const UpdateMovies = () => {
                     setAddMovies(prev => prev.map(m =>
                         m._id === movie._id ? { ...m, ...updatedMovie } : m
                     ));
-                 
+
                 } else {
                     toast('No changes made!');
                 }
+                setTimeout(() => {
+                    navigate(-1);
+                }, 2000);
             })
             .catch(err => {
                 console.error(err);

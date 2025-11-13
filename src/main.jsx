@@ -15,6 +15,7 @@ import MovieDetails from './Pages/MovieDetails.jsx';
 import AddMovie from './Pages/AddMoviePage.jsx';
 import MyCollection from './Pages/MyCollection.jsx';
 import UpdateMovies from './Pages/UpdateMovies.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
 
 
 
@@ -50,17 +51,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/addMovies",
-        Component: AddMovie,
+        element: <PrivateRoute><AddMovie></AddMovie></PrivateRoute>
       },
       {
         path: "/updateMovies/:id",
          loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-        Component: UpdateMovies,
+          element: <PrivateRoute><UpdateMovies></UpdateMovies></PrivateRoute>
       },
       {
         path: "/myCollection",
          loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-        Component: MyCollection,
+         element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute>
       },
       {
         path: "/*",

@@ -1,11 +1,14 @@
 import React, { use, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const AddMoviePage = () => {
 
     const {user} = use(AuthContext);
      const [addMovies, setAddMovies] = useState([])
+       const navigate = useNavigate();
+
 
 
      const handleAddMovie = (e) => {
@@ -51,10 +54,13 @@ const AddMoviePage = () => {
             .then(res => res.json())
             .then(data => {
                     newMovie._id = data.insertedId;
-                    const newMovie = [...addMovies, newMovie];
-                    setAddMovies(newMovie);
+                    const newMovies = [...addMovies, newMovie];
+                    setAddMovies(newMovies);
                 toast('Add movie successful')
                 form.reset();
+                setTimeout(() => {
+                    navigate(-1);
+                }, 2000);
             })
 
     }
