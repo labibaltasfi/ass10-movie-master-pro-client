@@ -53,9 +53,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/myCollection",
+         loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
         Component: MyCollection,
       },
-     
       {
         path: "/*",
         element: <ErrorPage></ErrorPage>,
