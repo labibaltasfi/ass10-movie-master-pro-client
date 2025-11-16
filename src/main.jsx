@@ -16,6 +16,7 @@ import AddMovie from './Pages/AddMoviePage.jsx';
 import MyCollection from './Pages/MyCollection.jsx';
 import UpdateMovies from './Pages/UpdateMovies.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
+import ProfilePage from './Pages/ProfilePage .jsx';
 
 
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         Component: Register
+      },
+      {
+        path: "profile",
+        Component: ProfilePage
       },
       {
         path: "/allMovies/:id",

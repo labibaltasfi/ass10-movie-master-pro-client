@@ -4,20 +4,8 @@ import { Link } from "react-router";
 
 const GenreSection = () => {
   const [movies, setMovies] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState("Sci-Fi"); 
+  const [selectedGenre, setSelectedGenre] = useState(null);
   const axiosInstance = useAxios();
-
-  const genres = [
-    "Sci-Fi",
-    "Action",
-    "Drama",
-    "Romance",
-    "Thriller",
-    "Crime",
-    "Animation",
-    "Biography",
-    "Adventure",
-  ];
 
 
   useEffect(() => {
@@ -25,7 +13,16 @@ const GenreSection = () => {
       .get("/allMovies")
       .then((res) => setMovies(res.data))
       .catch((err) => console.error("Error fetching movies:", err));
-  }, []);
+  }, [axiosInstance]);
+
+
+  const genres = Array.from(
+    new Set(
+      movies.flatMap((movie) =>
+        movie.genre?.split(",").map((g) => g.trim()) || []
+      )
+    )
+  );
 
 
   const filteredMovies = selectedGenre
@@ -38,12 +35,18 @@ const GenreSection = () => {
     )
     : movies;
 
-  return (
-    <div className="bg-[#EDEDF5]">
 
-   
+  const sortedMovies = [...filteredMovies].sort(
+    (a, b) => new Date(b.addedAt || b._id) - new Date(a.addedAt || a._id)
+  );
+
+  return (
     <div className="p-5 w-11/12 mx-auto">
-        <h2 className="text-4xl text-center py-10 font-semibold mb-3">Choose Your Category</h2>
+      <h2 className="text-4xl text-center py-10 font-semibold mb-3">
+        Choose Your Category
+      </h2>
+
+
       <div className="flex flex-wrap justify-center gap-3 mb-8">
         {genres.map((genre) => (
           <button
@@ -62,10 +65,10 @@ const GenreSection = () => {
         ))}
       </div>
 
-     
+
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4">
-        {filteredMovies.map(movie => (
-          <Link key={movie._id} className="card bg-base-100 shadow-sm mx-2.5 w-80 mb-10">
+        {sortedMovies.map(movie => (
+          <Link key={movie._id} to={`/allMovies/${movie._id}`} className="card border-4 border-[#00A8E7] shadow-gray-900 mx-2.5 w-80 mb-10">
             <figure>
               <img className='h-[500px]'
                 src={movie.posterUrl}
@@ -83,11 +86,10 @@ const GenreSection = () => {
         ))}
       </div>
 
-      {filteredMovies.length === 0 && (
+      {sortedMovies.length === 0 && (
         <p className="text-center text-gray-500 mt-6">No movies found.</p>
       )}
     </div>
-     </div>
   );
 };
 

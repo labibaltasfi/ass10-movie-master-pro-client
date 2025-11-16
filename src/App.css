@@ -38,10 +38,9 @@
 
 .btn-secondary {
  display: inline-block;
- padding: 0.6rem 1.2rem;
+ padding: 0.4rem .7rem;
  font-size: 16px;
  font-weight: 700;
- color: black;
  border: 3px solid #00A8E7;
  cursor: pointer;
  position: relative;
@@ -68,6 +67,10 @@
  transform: translateX(0);
 }
 
+
+.btn-secondary:hover{
+   color: white
+}
 
 
 

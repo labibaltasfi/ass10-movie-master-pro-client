@@ -21,7 +21,7 @@ const Footer = () => {
                                     <Link to="/" className="hover:text-white transition">Home</Link>
                                 </li>
                                 <li>
-                                    <Link to="/all-movies" className="hover:text-white transition">All Movies</Link>
+                                    <Link to="/allMovies" className="hover:text-white transition">All Movies</Link>
                                 </li>
                             </ul>
                         </div>

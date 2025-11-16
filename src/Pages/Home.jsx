@@ -4,12 +4,14 @@ import TopRatedMovies from '../components/TopRatedMovies';
 import RecentlyAdded from '../components/RecentlyAdded';
 import GenreSection from '../components/GenreSection';
 import Footer from '../components/footer';
+import StatisticsSection from '../components/StatisticsSection';
 
 
 const Home = () => {
     return (
         <div>
            <Banner></Banner>
+           <StatisticsSection></StatisticsSection>
             <TopRatedMovies></TopRatedMovies>
             <RecentlyAdded></RecentlyAdded>
             <GenreSection></GenreSection>

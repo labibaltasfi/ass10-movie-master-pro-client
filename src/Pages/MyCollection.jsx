@@ -1,6 +1,6 @@
 import { use, useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,7 @@ const MyCollection = () => {
     const [movies, setMovies] = useState([]);
     const axiosInstance = useAxios()
     const { user } = use(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance
@@ -58,12 +59,12 @@ const MyCollection = () => {
 
 
     return (
-        <div className="bg-[#EDEDF5]">
+        <div className="">
             <div className='p-5 w-11/12 mx-auto'>
                 <h2 className="text-4xl text-center py-10 font-semibold mb-3">My Collection Movies</h2>
                 <div className="">
                     {movies.map(movie => (
-                        <div key={movie._id} className="sm:flex justify-between bg-white rounded-2xl mb-3">
+                        <div key={movie._id} className="sm:flex justify-between bg-[#EDEDF5] text-black rounded-2xl mb-3">
                             <div className="flex sm:p-0 pb-5 pl-5 pt-5">
                                 <figure>
                                     <img className='h-[100px] rounded-2xl mr-3'
@@ -82,9 +83,12 @@ const MyCollection = () => {
                                 >
                                     Delete
                                 </button>
-                                <Link to={`/allMovies/${movie._id}`} >
-                                    <button className="btn btn-primary">Details</button>
-                                </Link>
+                               <button
+                                className="btn btn-primary ml-3"
+                                onClick={() => navigate(`/updateMovies/${movie._id}`)}
+                            >
+                                Update
+                            </button>
                             </div>
                         </div>
                     ))}

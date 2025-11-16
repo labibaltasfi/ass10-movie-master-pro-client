@@ -27,6 +27,7 @@ const Login = () => {
             .catch((error) => {
                 console.log(error.message)
                 setError("Email or password is incorrect.");
+                toast('Email or password is incorrect.')
             });
     }
 
@@ -43,7 +44,7 @@ const Login = () => {
                     image: result.user.photoURL
                 }
 
-                // create user in the database
+             
                 fetch('http://localhost:3000/users', {
                     method: 'POST',
                     headers: {
@@ -52,10 +53,8 @@ const Login = () => {
                     body: JSON.stringify(newUser)
                 })
                     .then(res => res.json())
-                    .then(data => {
-                        // console.log('data after user save', data)
-                    })
-                navigate(location?.state || '/')
+                toast('Login Successful')
+                navigate("/");
             })
             .catch(error => {
                 console.log(error)
