@@ -52,8 +52,8 @@ const MovieDetails = () => {
                             });
 
                             // 
-                            const remainingBids = movies.filter(bid => bid._id !== _id);
-                            setMovies(remainingBids)
+                            const remainingMovies = movies.filter(movie => movie._id !== _id);
+                            setMovies(remainingMovies)
                         }
                     })
 
@@ -66,7 +66,8 @@ const MovieDetails = () => {
     if (!movie) return <p className="text-center mt-10 text-4xl font-black h-screen flex justify-center items-center">Movie not found.</p>;
 
     return (
-        <div className='bg-[#EDEDF5]'>
+        <div className=''>
+            <title>{movie.title}</title>
             <div className='p-5 w-11/12 mx-auto py-10 '>
                 <div className='grid md:grid-cols-2 items-center gap-8 grid-cols-1'>
                     <div className='flex justify-center'>

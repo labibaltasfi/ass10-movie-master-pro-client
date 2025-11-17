@@ -17,6 +17,8 @@ import MyCollection from './Pages/MyCollection.jsx';
 import UpdateMovies from './Pages/UpdateMovies.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import ProfilePage from './Pages/ProfilePage .jsx';
+import WatchlistPage from './Pages/WatchlistPage.jsx';
+import WatchlistDetails from './Pages/WatchlistDetails.jsx';
 
 
 
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/allMovies/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
         Component: MovieDetails,
       },
       {
@@ -60,13 +62,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateMovies/:id",
-         loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-          element: <PrivateRoute><UpdateMovies></UpdateMovies></PrivateRoute>
+        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        element: <PrivateRoute><UpdateMovies></UpdateMovies></PrivateRoute>
       },
       {
         path: "/myCollection",
-         loader: ({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-         element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute>
+        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute>
+      },
+      {
+        path: "/watchlist",
+        element: <WatchlistPage />
+      },
+      {
+        path: "/watchlist/:id",
+         loader: ({ params }) => fetch(`http://localhost:3000/watchlist/${params.id}`),
+        element: <WatchlistDetails />
       },
       {
         path: "/*",

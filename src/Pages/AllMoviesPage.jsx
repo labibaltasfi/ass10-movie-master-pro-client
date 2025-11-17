@@ -79,21 +79,34 @@ const AllMoviesPage = () => {
         return genreMatch && ratingMatch;
     });
 
-    const handleAddToWatchlist = (movie) => {
-        fetch("http://localhost:3000/watchlist", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email: user.email,
-                title: movie.title   // ✅ now correct
-            })
+  const handleAddToWatchlist = (movie) => {
+    fetch("http://localhost:3000/watchlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: user.email,
+            movie: movie   
         })
-            .then(res => res.json())
-            .then(() => toast.success("Added to watchlist"));
-    };
+    })
+    .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+            toast.error(data.message || "Movie already add watchlist");
+        } else {
+            toast.success("Added to watchlist");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        toast.error("Failed to add movie");
+    });
+};
+
+
 
     return (
         <div className="min-h-screen p-5">
+            <title>All Movies</title>
             <ToastContainer></ToastContainer>
             <div className="w-11/12 mx-auto flex gap-8">
                 <div>
@@ -220,12 +233,13 @@ const AllMoviesPage = () => {
                                         <h2 className="card-title">{movie.title}</h2>
                                         <p>Rating: {movie.rating}</p>
                                         <p>{movie.releaseYear}, {movie.genre}</p>
-                                        <div className="card-actions justify-end mt-2">
-                                            <button onClick={() => handleAddToWatchlist(movie)}>
-                                                Add to Watchlist
+                                        <div className="flex justify-end mt-2">
+                                            <button className="btn btn-info text-white" onClick={() => handleAddToWatchlist(movie)}>
+                                                Add Watchlist
                                             </button>
 
-                                            <Link to={`/allMovies/${movie._id}`} className="btn btn-primary">
+
+                                            <Link to={`/allMovies/${movie._id}`} className="btn btn-primary ml-2">
                                                 Details
                                             </Link>
                                         </div>

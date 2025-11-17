@@ -39,7 +39,7 @@ const ProfilePage = () => {
         <p className="text-gray-600">{user?.email}</p>
 
         <button
-          className="btn btn-error text-white w-full mt-8"
+          className="btn btn-red text-white w-full mt-8"
           onClick={handleLogout}
         >
           Logout

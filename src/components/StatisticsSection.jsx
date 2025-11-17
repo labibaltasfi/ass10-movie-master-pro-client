@@ -9,12 +9,11 @@ const StatisticsSection = () => {
     const [totalUsers, setTotalUsers] = useState(0);
 
     useEffect(() => {
-        // Fetch total movies
         axiosInstance.get("/allMovies")
             .then(res => setTotalMovies(res.data.length))
             .catch(err => console.error("Movies Error:", err));
 
-        // Fetch total users
+       
         axiosInstance.get("/users")
             .then(res => setTotalUsers(res.data.length))
             .catch(err => console.error("Users Error:", err));

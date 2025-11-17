@@ -46,12 +46,10 @@ const MyCollection = () => {
                             });
 
                             // 
-                            const remainingBids = movies.filter(bid => bid._id !== _id);
-                            setMovies(remainingBids)
+                            const remainingMovies = movies.filter(movie => movie._id !== _id);
+                            setMovies(remainingMovies)
                         }
                     })
-
-
             }
         });
     }
@@ -59,15 +57,16 @@ const MyCollection = () => {
 
 
     return (
-        <div className="">
-            <div className='p-5 w-11/12 mx-auto'>
+        
+            <div className='p-5 w-11/12 mx-auto min-h-screen'>
+                <title>My Collection Movies</title>
                 <h2 className="text-4xl text-center py-10 font-semibold mb-3">My Collection Movies</h2>
-                <div className="">
+                
                     {movies.map(movie => (
                         <div key={movie._id} className="sm:flex justify-between bg-[#EDEDF5] text-black rounded-2xl mb-3">
                             <div className="flex sm:p-0 pb-5 pl-5 pt-5">
                                 <figure>
-                                    <img className='h-[100px] rounded-2xl mr-3'
+                                    <img className='h-[100px]  w-[100px] rounded-2xl mr-3'
                                         src={movie.posterUrl}
                                         alt="movies Poster" />
                                 </figure>
@@ -94,8 +93,7 @@ const MyCollection = () => {
                     ))}
 
                 </div>
-            </div>
-        </div>
+      
     );
 };
 

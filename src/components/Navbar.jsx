@@ -57,21 +57,21 @@ const Navbar = () => {
         <>
           <li
             onClick={() => handleNavigation("/myCollection")}
-            className={`my-2 px-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/myCollection"
-                ? "text-white bg-[#00A8E7]"
-                : "text-[#00A8E7] "
+            className={`my-2 px-3 mr-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/myCollection"
+              ? "text-white bg-[#00A8E7]"
+              : "text-[#00A8E7] "
               }`}
           >
             My Collection
           </li>
-          
         </>
       )}
     </>
   );
 
   return (
-    <div className="relative">
+   <div className="sticky top-0 bg-black backdrop-blur border-b border-gray-700 z-50">
+     <div className="relative">
       {loading && (
         <div className="flex items-center justify-center h-screen ">
           <div className="flex">
@@ -83,8 +83,8 @@ const Navbar = () => {
       <div className="navbar xl:px-20">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden ">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
             </div>
             <ul
               tabIndex="-1"
@@ -93,7 +93,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="btn btn-ghost text-xl">
-            <span onClick={() => handleNavigation("/")} className="font-extrabold text-[#00A8E7] ">
+            <span onClick={() => handleNavigation("/")} className="sm:font-extrabold font-bold text-[#00A8E7] ">
               MovieMaster Pro
             </span>
           </div>
@@ -105,10 +105,11 @@ const Navbar = () => {
               links
             }
           </ul>
-          <ThemeToggle />
+
         </div>
 
         <div className="navbar-end">
+          <ThemeToggle />
           <div className='login-btn flex  text-[#0B3954] text-2xl font-semibold items-center px-4'>
             {
               !user && (
@@ -131,16 +132,16 @@ const Navbar = () => {
             }
             <div>
               {user && (
-                
+
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="cursor-pointer">
-                   <img
-                  className="w-20 h-10 md:h-11 xl:h-14 2xl:h-16  rounded-full object-cover border-2 border-white sm:mr-0 mr-8"
-                  src={
-                    user?.photoURL ? user.photoURL : "https://i.ibb.co.com/hR0p6qhz/user.png"
-                  }
-                  alt="User"
-                />
+                    <img
+                      className="w-15 h-15 md:h-11 xl:h-14 2xl:h-16  rounded-full object-cover border-2  sm:mr-0"
+                      src={
+                        user?.photoURL ? user.photoURL : "https://i.ibb.co.com/hR0p6qhz/user.png"
+                      }
+                      alt="User"
+                    />
                   </div>
                   <div
                     tabIndex="-1"
@@ -150,7 +151,9 @@ const Navbar = () => {
                       <hr />
                       <li><Link to='addMovies' className="text-2xl">Add Movie</Link></li>
                       <hr />
-                       <li><button onClick={handleLogOut} className='text-2xl cursor-pointer'>Logout</button></li>
+                      <li><Link to='watchlist' className="text-2xl">Watchlist</Link></li>
+                      <hr />
+                      <li><button onClick={handleLogOut} className='text-2xl cursor-pointer'>Logout</button></li>
                     </ul>
                   </div>
                 </div>
@@ -162,6 +165,7 @@ const Navbar = () => {
       </div>
     </div>
 
+   </div>
   );
 };
 

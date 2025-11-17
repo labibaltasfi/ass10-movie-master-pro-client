@@ -70,7 +70,7 @@ const AddMoviePage = () => {
     return (
        <div className='min-h-screen flex items-center justify-center  px-4 py-10'>
             <ToastContainer></ToastContainer>
-            <title>Register</title>
+            <title>Add Movie</title>
             <div className="card bg-white text-gray-800 py-8 px-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl rounded-3xl shadow-2xl">
                 <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8'>Add Movie</h2>
                 <form onSubmit={handleAddMovie} className="space-y-4  sm:space-y-6">
