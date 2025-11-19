@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AuthContext } from "../context/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
+import Cinema from '../assets/cinema.png'
 
 const AllMoviesPage = () => {
     const axiosInstance = useAxios();
@@ -11,13 +12,21 @@ const AllMoviesPage = () => {
     const { user } = use(AuthContext);
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [selectedRatings, setSelectedRatings] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         axiosInstance
             .get("/allMovies")
-            .then((res) => setMovies(res.data))
-            .catch((err) => console.error(err));
-    }, []);
+            .then(res => {
+                setMovies(res.data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, [axiosInstance, ]);
 
 
     const genres = Array.from(
@@ -80,7 +89,7 @@ const AllMoviesPage = () => {
     });
 
   const handleAddToWatchlist = (movie) => {
-    fetch("http://localhost:3000/watchlist", {
+    fetch("https://movie-master-pro-server-eta.vercel.app/watchlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -101,6 +110,23 @@ const AllMoviesPage = () => {
         toast.error("Failed to add movie");
     });
 };
+
+
+if (loading || !movies) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-white">
+                <div className="flex">
+                    <img className="animate-spin h-30 w-30 mr-7 mb-3" src={Cinema} alt="" /> <h1 className="text-[50px] font-bold"> Loading...</h1>
+                </div>
+            </div>
+        );
+    }
+
+
+    if (!movies) {
+        return <Error></Error>
+    }
+
 
 
 

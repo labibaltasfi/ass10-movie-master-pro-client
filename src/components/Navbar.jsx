@@ -16,6 +16,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         console.log('logOut successful')
+        navigate('/')
       })
       .catch()
   }
@@ -136,7 +137,7 @@ const Navbar = () => {
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="cursor-pointer">
                     <img
-                      className="w-15 h-15 md:h-11 xl:h-14 2xl:h-16  rounded-full object-cover border-2  sm:mr-0"
+                      className="w-15 h-15 md:h-15 xl:h-14 2xl:h-16  rounded-full object-cover border-2  sm:mr-0"
                       src={
                         user?.photoURL ? user.photoURL : "https://i.ibb.co.com/hR0p6qhz/user.png"
                       }

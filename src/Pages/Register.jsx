@@ -54,7 +54,7 @@ const Register = () => {
                 };
 
 
-                return fetch("http://localhost:3000/users", {
+                return fetch("https://movie-master-pro-server-eta.vercel.app/users", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(newUser),
@@ -76,7 +76,7 @@ const Register = () => {
             });
     }
     return (
-        <div className='min-h-screen flex items-center justify-center bg-[#EDEDF5] px-4 py-10'>
+        <div className='min-h-screen flex items-center justify-center px-4 py-10'>
             <ToastContainer />
             <title>Register</title>
             <div className="card bg-white text-gray-800 py-8 px-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl rounded-3xl shadow-2xl">

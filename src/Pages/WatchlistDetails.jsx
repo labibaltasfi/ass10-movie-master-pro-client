@@ -3,15 +3,16 @@ import { Link, useLoaderData, useNavigate, } from 'react-router';
 import useAxios from '../hooks/useAxios';
 import { AuthContext } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
+import Error from '../components/Error';
+import Cinema from '../assets/cinema.png'
 
 
 const WatchlistDetails = () => {
     const { _id: id } = useLoaderData();
-    const navigate = useNavigate();
     const axiosInstance = useAxios();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { user } = use(AuthContext);
+
 
     useEffect(() => {
         axiosInstance.get(`/watchlist/${id}`)
@@ -26,13 +27,31 @@ const WatchlistDetails = () => {
     }, [id, axiosInstance]);
 
 
+if (loading || !movie) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-white">
+                <div className="flex">
+                    <img className="animate-spin h-30 w-30 mr-7 mb-3" src={Cinema} alt="" /> <h1 className="text-[50px] font-bold"> Loading...</h1>
+                </div>
+            </div>
+        );
+    }
+
+
+    if (!movie) {
+        return <Error></Error>
+    }
+
+
+
    
     if (loading) return <p className="text-center mt-10">Loading...</p>;
-    if (!movie) return <p className="text-center mt-10 text-4xl font-black h-screen flex justify-center items-center">Movie not found.</p>;
+   
 
     return (
         <div className=''>
             <title>{movie.movie.title}</title>
+           
             <div className='p-5 w-11/12 mx-auto py-10 '>
                 <div className='grid md:grid-cols-2 items-center gap-8 grid-cols-1'>
                     <div className='flex justify-center'>

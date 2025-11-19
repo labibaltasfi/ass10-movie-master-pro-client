@@ -68,7 +68,7 @@ const UpdateMovies = () => {
             addedBy: email,
         }
 
-        fetch(`http://localhost:3000/allMovies/${movie._id}`, {
+        fetch(`https://movie-master-pro-server-eta.vercel.app/allMovies/${movie._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

@@ -45,7 +45,7 @@ const Login = () => {
                 }
 
              
-                fetch('http://localhost:3000/users', {
+                fetch('https://movie-master-pro-server-eta.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -67,7 +67,7 @@ const Login = () => {
 
 
     return (
-        <div className='min-h-screen flex items-center justify-center bg-[#EDEDF5] px-4 py-10'>
+        <div className='min-h-screen flex items-center justify-center  px-4 py-10'>
             <ToastContainer />
             <title>Login</title>
             <div className="card bg-white text-gray-800 py-8 px-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl rounded-3xl shadow-2xl">
@@ -106,7 +106,7 @@ const Login = () => {
 
                     {error && <p className='text-red-500 text-[18px]'>{error}</p>}
 
-                    {/* Login Button */}
+                 
                     <button
                         type="submit"
                         className="w-full py-3 sm:py-4 rounded-xl bg-[#00BFA6] text-white font-semibold text-sm sm:text-base lg:text-lg hover:bg-[#00a98f] active:bg-[#00987a] transition-colors duration-200 cursor-pointer"
@@ -115,7 +115,7 @@ const Login = () => {
                     </button>
                 </form>
 
-                {/* OR Separator */}
+          
                 <div className="flex items-center my-4">
                     <hr className="flex-grow border-gray-300" />
                     <span className="px-2 text-gray-500 text-sm sm:text-base">OR</span>

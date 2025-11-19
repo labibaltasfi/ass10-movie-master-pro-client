@@ -24,6 +24,7 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center p-5">
+        <title>Profile</title>
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center">
 
         <img

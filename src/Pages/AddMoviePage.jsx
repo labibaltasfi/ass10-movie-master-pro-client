@@ -45,7 +45,7 @@ const AddMoviePage = () => {
             addedBy: email,
         }
 
-        fetch('http://localhost:3000/allMovies', {
+        fetch('https://movie-master-pro-server-eta.vercel.app/allMovies', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

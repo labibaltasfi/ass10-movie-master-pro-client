@@ -14,7 +14,7 @@ const WatchlistPage = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/watchlist/user/${user.email}`)
+    fetch(`https://movie-master-pro-server-eta.vercel.app/watchlist/user/${user.email}`)
         .then(res => res.json())
         .then(data => setWatchlist(data));
 }, [user]);
@@ -33,7 +33,7 @@ const WatchlistPage = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/watchlist/${_id}`, {
+                fetch(`https://movie-master-pro-server-eta.vercel.app/watchlist/${_id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -84,7 +84,7 @@ const WatchlistPage = () => {
                         </div>
 
                         <div className="flex items-center sm:justify-end justify-center sm:px-4 sm:pb-0 pb-5">
-                            {/* 🔥 Correct delete: use watchlist item _id */}
+                           
                             <button
                                 className="btn btn-red mr-4"
                                 onClick={() => handleDelete(item._id)}

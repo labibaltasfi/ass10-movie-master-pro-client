@@ -51,7 +51,7 @@ const GenreSection = () => {
 
 
    const handleAddToWatchlist = (movie) => {
-      fetch("http://localhost:3000/watchlist", {
+      fetch("https://movie-master-pro-server-eta.vercel.app/watchlist", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

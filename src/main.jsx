@@ -19,6 +19,7 @@ import PrivateRoute from './Routes/PrivateRoute.jsx';
 import ProfilePage from './Pages/ProfilePage .jsx';
 import WatchlistPage from './Pages/WatchlistPage.jsx';
 import WatchlistDetails from './Pages/WatchlistDetails.jsx';
+import LoadingSpinner from './LoadingSpinner/LoadingSpinner.jsx';
 
 
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
     children: [
       {
         index: true,
@@ -53,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/allMovies/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        loader: ({ params }) => fetch(`https://movie-master-pro-server-eta.vercel.app/allMovies/${params.id}`),
         Component: MovieDetails,
       },
       {
@@ -62,12 +64,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateMovies/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        loader: ({ params }) => fetch(`https://movie-master-pro-server-eta.vercel.app/allMovies/${params.id}`),
         element: <PrivateRoute><UpdateMovies></UpdateMovies></PrivateRoute>
       },
       {
         path: "/myCollection",
-        loader: ({ params }) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        loader: ({ params }) => fetch(`https://movie-master-pro-server-eta.vercel.app/allMovies/${params.id}`),
         element: <PrivateRoute><MyCollection></MyCollection></PrivateRoute>
       },
       {
@@ -76,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/watchlist/:id",
-         loader: ({ params }) => fetch(`http://localhost:3000/watchlist/${params.id}`),
+         loader: ({ params }) => fetch(`https://movie-master-pro-server-eta.vercel.app/watchlist/${params.id}`),
         element: <WatchlistDetails />
       },
       {

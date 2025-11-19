@@ -18,7 +18,7 @@ const RecentlyAdded = () => {
 
 
      const handleAddToWatchlist = (movie) => {
-        fetch("http://localhost:3000/watchlist", {
+        fetch("https://movie-master-pro-server-eta.vercel.app/watchlist", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -46,8 +46,8 @@ const RecentlyAdded = () => {
         <div className="">
             <div className='p-5 w-11/12 mx-auto'>
             <ToastContainer></ToastContainer>
-                <h2 className="text-4xl text-center py-10 font-semibold mb-3"> Recently Added</h2>
-                <div className="grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 ">
+                <h2 className="text-4xl text-center py-10 mb-20 font-semibold "> Recently Added</h2>
+                <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 ">
                     {movies.map((movie) => (
                                 <div
                                     key={movie._id}

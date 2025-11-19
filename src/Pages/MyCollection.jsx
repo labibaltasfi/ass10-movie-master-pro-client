@@ -3,18 +3,22 @@ import useAxios from "../hooks/useAxios";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
+import Cinema from '../assets/cinema.png'
 
 const MyCollection = () => {
     const [movies, setMovies] = useState([]);
     const axiosInstance = useAxios()
     const { user } = use(AuthContext);
     const navigate = useNavigate();
+     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         axiosInstance
             .get("/myCollection")
             .then(res => {
                 const filtered = res.data.filter(movie => movie.addedBy === user?.email);
+                setLoading(false)
                 setMovies(filtered);
             })
             .catch(err => console.error(err));
@@ -33,7 +37,7 @@ const MyCollection = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/allMovies/${_id}`, {
+                fetch(`https://movie-master-pro-server-eta.vercel.app/allMovies/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -53,6 +57,22 @@ const MyCollection = () => {
             }
         });
     }
+
+    if (loading || !movies) {
+            return (
+                <div className="flex items-center justify-center h-screen bg-white">
+                    <div className="flex">
+                        <img className="animate-spin h-30 w-30 mr-7 mb-3" src={Cinema} alt="" /> <h1 className="text-[50px] font-bold"> Loading...</h1>
+                    </div>
+                </div>
+            );
+        }
+    
+    
+        if (!movies) {
+            return <Error></Error>
+        }
+    
 
 
 
