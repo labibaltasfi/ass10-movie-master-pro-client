@@ -12,7 +12,24 @@ const AllMoviesPage = () => {
     const { user } = use(AuthContext);
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [selectedRatings, setSelectedRatings] = useState([]);
+    const [totalPage, setTotalPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
+    const limit = 6;
+
+
+    useEffect(() => {
+        axiosInstance
+            .get(`/allMovies?limit=${limit}&skip=${currentPage * limit}`)
+            .then(res => {
+                setMovies(res.data);
+                setTotalPage(data.total);
+                const page = Math.ceil(data.total / limit);
+                setTotalPage(page);
+                setLoading(false);
+            })
+    }, [currentPage])
+
 
 
     useEffect(() => {
@@ -26,7 +43,7 @@ const AllMoviesPage = () => {
                 console.error(err);
                 setLoading(false);
             });
-    }, [axiosInstance, ]);
+    }, [axiosInstance,]);
 
 
     const genres = Array.from(
@@ -88,31 +105,31 @@ const AllMoviesPage = () => {
         return genreMatch && ratingMatch;
     });
 
-  const handleAddToWatchlist = (movie) => {
-    fetch("https://movie-master-pro-server-eta.vercel.app/watchlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: user.email,
-            movie: movie   
+    const handleAddToWatchlist = (movie) => {
+        fetch("https://movie-master-pro-server-eta.vercel.app/watchlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: user.email,
+                movie: movie
+            })
         })
-    })
-    .then(async (res) => {
-        const data = await res.json();
-        if (!res.ok) {
-            toast.error(data.message || "Movie already add watchlist");
-        } else {
-            toast.success("Added to watchlist");
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        toast.error("Failed to add movie");
-    });
-};
+            .then(async (res) => {
+                const data = await res.json();
+                if (!res.ok) {
+                    toast.error(data.message || "Movie already add watchlist");
+                } else {
+                    toast.success("Added to watchlist");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Failed to add movie");
+            });
+    };
 
 
-if (loading || !movies) {
+    if (loading || !movies) {
         return (
             <div className="flex items-center justify-center h-screen bg-white">
                 <div className="flex">
@@ -134,7 +151,7 @@ if (loading || !movies) {
         <div className="min-h-screen p-5">
             <title>All Movies</title>
             <ToastContainer></ToastContainer>
-            <div className="w-11/12 mx-auto flex gap-8">
+            <div className="w-9/12 mx-auto flex gap-8">
                 <div>
                     <div className="my-15">
                         <h2 className="text-4xl text-center font-semibold">
@@ -241,7 +258,7 @@ if (loading || !movies) {
                         </div>
 
 
-                        <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
+                        <div className="grid 2xl:grid-cols-3 xl:ml-18 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
                             {filteredMovies.map((movie) => (
                                 <div
                                     key={movie._id}
@@ -275,6 +292,38 @@ if (loading || !movies) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="flex justify-center flex-wrap gap-3 py-10">
+                {/* Prev Button */}
+                {currentPage > 0 && (
+                    <button
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        className="btn"
+                    >
+                        Prev
+                    </button>
+                )}
+
+                {/* Page Numbers */}
+                {[...Array(totalPage).keys()].map((i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrentPage(i)}
+                        className={`btn ${i === currentPage ? "btn-primary" : ""}`}
+                    >
+                        {i + 1} {/* show 1-based page number */}
+                    </button>
+                ))}
+
+                {/* Next Button */}
+                {currentPage < totalPage - 1 && (
+                    <button
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        className="btn"
+                    >
+                        Next
+                    </button>
+                )}
             </div>
         </div>
     );

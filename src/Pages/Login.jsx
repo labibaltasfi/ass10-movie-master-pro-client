@@ -11,7 +11,7 @@ const Login = () => {
     const { signIn, signInWithGoogle, setUser, } = use(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-  
+
 
     const handleLogin = e => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const Login = () => {
                     image: result.user.photoURL
                 }
 
-             
+
                 fetch('https://movie-master-pro-server-eta.vercel.app/users', {
                     method: 'POST',
                     headers: {
@@ -60,6 +60,22 @@ const Login = () => {
                 console.log(error)
             })
     }
+
+
+    const handleDemoLogin = async () => {
+        const demoUser = {
+            email: "demo@demo.com",
+            password: "Asdf@1234"
+        };
+
+        try {
+            const res = await signIn(demoUser.email, demoUser.password);
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
 
 
@@ -106,7 +122,7 @@ const Login = () => {
 
                     {error && <p className='text-red-500 text-[18px]'>{error}</p>}
 
-                 
+
                     <button
                         type="submit"
                         className="w-full py-3 sm:py-4 rounded-xl bg-[#00BFA6] text-white font-semibold text-sm sm:text-base lg:text-lg hover:bg-[#00a98f] active:bg-[#00987a] transition-colors duration-200 cursor-pointer"
@@ -115,7 +131,7 @@ const Login = () => {
                     </button>
                 </form>
 
-          
+
                 <div className="flex items-center my-4">
                     <hr className="flex-grow border-gray-300" />
                     <span className="px-2 text-gray-500 text-sm sm:text-base">OR</span>
@@ -136,6 +152,15 @@ const Login = () => {
                     />
                     Login with Google
                 </button>
+
+                {/* demo login  */}
+                <button
+                    onClick={handleDemoLogin}
+                    className="btn rounded-xl py-7 btn-secondary w-full mt-6"
+                >
+                    Try Demo Account
+                </button>
+
                 {/* Register Link */}
                 <p className='pt-4 sm:pt-6 text-center text-gray-600 text-xs sm:text-sm lg:text-base'>
                     Don’t have an account?

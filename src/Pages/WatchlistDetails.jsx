@@ -52,7 +52,7 @@ if (loading || !movie) {
         <div className=''>
             <title>{movie.movie.title}</title>
            
-            <div className='p-5 w-11/12 mx-auto py-10 '>
+            <div className='p-5 w-9/12 mx-auto py-10 '>
                 <div className='grid md:grid-cols-2 items-center gap-8 grid-cols-1'>
                     <div className='flex justify-center'>
                         <img src={movie.movie.posterUrl} alt="" />

@@ -11,17 +11,17 @@ const WatchlistPage = () => {
     const [watchlist, setWatchlist] = useState([]);
 
 
-  useEffect(() => {
-    if (!user?.email) return;
+    useEffect(() => {
+        if (!user?.email) return;
 
-    fetch(`https://movie-master-pro-server-eta.vercel.app/watchlist/user/${user.email}`)
-        .then(res => res.json())
-        .then(data => setWatchlist(data));
-}, [user]);
+        fetch(`https://movie-master-pro-server-eta.vercel.app/watchlist/user/${user.email}`)
+            .then(res => res.json())
+            .then(data => setWatchlist(data));
+    }, [user]);
 
 
 
-  
+
     const handleDelete = (_id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -41,7 +41,7 @@ const WatchlistPage = () => {
                         if (data.deletedCount > 0) {
                             Swal.fire("Deleted!", "Movie removed from watchlist.", "success");
 
-                    
+
                             setWatchlist(prev => prev.filter(item => item._id !== _id));
                         }
                     })
@@ -56,14 +56,34 @@ const WatchlistPage = () => {
     return (
         <div className="p-5 w-11/12 mx-auto min-h-screen">
             <title>Watchlist</title>
+
             <h2 className="text-4xl text-center py-10 font-semibold mb-3">
                 My Watchlist
             </h2>
 
             <ToastContainer />
 
-            <div>
-                {watchlist.map(item => (
+            {watchlist.length === 0 ? (
+              
+                <div className="flex flex-col items-center justify-center text-center mt-20">
+                    <p className="text-xl mb-5 text-gray-500">
+                        Your watchlist is empty 🍿
+                    </p>
+
+                    <button
+                        onClick={() => navigate("/allmovies")}
+                        className="btn btn-primary"
+                    >
+                        Browse Movies
+                    </button>
+
+                    <p className="text-sm text-gray-400 mt-2">
+                        Add movies to your watchlist to see them here.
+                    </p>
+                </div>
+            ) : (
+            
+                watchlist.map((item) => (
                     <div
                         key={item._id}
                         className="sm:flex justify-between bg-[#EDEDF5] text-black rounded-2xl mb-3"
@@ -79,12 +99,13 @@ const WatchlistPage = () => {
 
                             <div className="flex flex-col justify-center">
                                 <h2 className="card-title">{item.movie.title}</h2>
-                                <p>{item.movie.releaseYear}, {item.movie.genre}</p>
+                                <p>
+                                    {item.movie.releaseYear}, {item.movie.genre}
+                                </p>
                             </div>
                         </div>
 
                         <div className="flex items-center sm:justify-end justify-center sm:px-4 sm:pb-0 pb-5">
-                           
                             <button
                                 className="btn btn-red mr-4"
                                 onClick={() => handleDelete(item._id)}
@@ -100,9 +121,10 @@ const WatchlistPage = () => {
                             </button>
                         </div>
                     </div>
-                ))}
-            </div>
+                ))
+            )}
         </div>
+
     );
 };
 

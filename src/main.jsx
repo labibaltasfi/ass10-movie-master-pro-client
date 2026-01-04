@@ -20,6 +20,7 @@ import ProfilePage from './Pages/ProfilePage .jsx';
 import WatchlistPage from './Pages/WatchlistPage.jsx';
 import WatchlistDetails from './Pages/WatchlistDetails.jsx';
 import LoadingSpinner from './LoadingSpinner/LoadingSpinner.jsx';
+import Dashboard from './Pages/Dashboard.jsx';
 
 
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/watchlist",
         element: <WatchlistPage />
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />
       },
       {
         path: "/watchlist/:id",

@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF,  FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
         <footer className="bg-gray-900 text-gray-300 py-6 pt-12">
-            <div className="p-5 w-11/12 mx-auto">
+            <div className="p-5 w-9/12 mx-auto">
                 <div className="grid lg:grid-cols-3 grid-cols-2  mb-20 gap-20">
                     <div className="lg:col-span-1 col-span-2">
                         <h2 className="font-extrabold text-4xl text-[#00A8E7] pb-5">
@@ -44,7 +45,7 @@ const Footer = () => {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 hover:text-white transition"
                         >
-                            <FaTwitter /> Twitter
+                           <FaXTwitter /> Twitter
                         </a>
                         <a
                             href="https://instagram.com"
