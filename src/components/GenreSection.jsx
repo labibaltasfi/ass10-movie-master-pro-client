@@ -100,7 +100,7 @@ const GenreSection = () => {
       </div>
 
 
-      <div className="grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4">
+      <div className="grid 2xl:grid-cols-4 xl:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 items-center justify-items-center">
         {sortedMovies.map((movie) => (
                                 <div
                                     key={movie._id}

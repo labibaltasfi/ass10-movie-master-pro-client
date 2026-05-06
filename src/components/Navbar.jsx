@@ -83,7 +83,7 @@ const Navbar = () => {
         <>
           <li
             onClick={() => handleNavigation("/myCollection")}
-            className={`my-2 px-3 mr-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/myCollection"
+            className={`my-2 px-3  py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/myCollection"
               ? "text-white bg-[#00A8E7]"
               : "text-[#00A8E7] "
               }`}
@@ -92,7 +92,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => navigate("/addMovies")}
-            className={`my-2 px-3 mr-3 py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/addMovies"
+            className={`my-2 px-3  py-1 rounded-md cursor-pointer transition-colors duration-200 btn-secondary ${location.pathname === "/addMovies"
                 ? "text-white bg-[#00A8E7]"
                 : "text-[#00A8E7]"
               }`}
