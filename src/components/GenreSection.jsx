@@ -74,7 +74,7 @@ const GenreSection = () => {
   };
 
   return (
-    <div className="p-5 w-9/12 mx-auto">
+    <div className="p-5 md:p-0  w-9/12 mx-auto">
       <ToastContainer></ToastContainer>
       <h2 className="text-4xl text-center py-10 font-semibold mb-3">
         Choose Your Category

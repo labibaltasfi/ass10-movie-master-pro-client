@@ -134,7 +134,7 @@ if (loading || !movies) {
         <div className="min-h-screen p-5">
             <title>All Movies</title>
             <ToastContainer></ToastContainer>
-            <div className="w-9/12 mx-auto flex gap-8">
+            <div className="w-9/12 mx-auto">
                 <div>
                     <div className="my-15">
                         <h2 className="text-4xl text-center font-semibold">
@@ -241,7 +241,7 @@ if (loading || !movies) {
                         </div>
 
 
-                        <div className="grid 2xl:grid-cols-3 xl:ml-18 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-6">
+                        <div className="grid 2xl:grid-cols-3 xl:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 items-center justify-items-center">
                             {filteredMovies.map((movie) => (
                                 <div
                                     key={movie._id}
@@ -250,7 +250,7 @@ if (loading || !movies) {
                                 >
                                     <figure>
                                         <img
-                                            className="h-[500px]"
+                                            className="h-[500px] "
                                             src={movie.posterUrl}
                                             alt="movies Poster"
                                         />

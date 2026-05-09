@@ -44,7 +44,7 @@ const RecentlyAdded = () => {
 
     return (
         <div className="">
-            <div className='p-5 w-9/12 mx-auto'>
+            <div className='p-5 md:p-0 w-9/12 mx-auto'>
             <ToastContainer></ToastContainer>
                 <h2 className="text-4xl text-center py-10 mb-20 font-semibold "> Recently Added</h2>
                 <div className="grid 2xl:grid-cols-4 xl:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-4 items-center justify-items-center">

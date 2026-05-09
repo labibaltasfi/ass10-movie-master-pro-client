@@ -137,9 +137,8 @@ const Navbar = () => {
                 {links}
               </ul>
             </div>
-            <div className="btn btn-ghost text-xl">
-              <span onClick={() => handleNavigation("/")} className="sm:font-extrabold font-bold text-[#00A8E7] ">
-                MovieMaster Pro
+            <div className="text-xl">
+              <span onClick={() => handleNavigation("/")} className="sm:font-extrabold font-bold text-[#00A8E7] ">MovieMaster Pro
               </span>
             </div>
           </div>
@@ -155,7 +154,7 @@ const Navbar = () => {
 
           <div className="navbar-end">
             <ThemeToggle />
-            <div className='login-btn flex  text-[#0B3954] text-2xl font-semibold items-center px-4 mr-4'>
+            <div className='login-btn flex  text-[#0B3954] text-2xl font-semibold items-center pl-4 '>
               {
                 !user && (
                   <div className="dropdown dropdown-end ">
